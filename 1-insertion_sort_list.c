@@ -32,7 +32,7 @@ void insertion_sort_list(listint_t **list)
 			if (hold)
 				(hold)->prev = j;
 			hold = j;
-			j = j->prev;	
+			j = j->prev;
 		}
 		key->prev = j;
 		if (j)
@@ -43,7 +43,7 @@ void insertion_sort_list(listint_t **list)
 		key->next = hold;
 		if (hold)
 			hold->prev = key;
-	
+
 		print_list(*list);
 	}
 }
