@@ -33,17 +33,17 @@ void insertion_sort_list(listint_t **list)
 				(hold)->prev = j;
 			hold = j;
 			j = j->prev;
-			key->prev = j;
-			if (j)
-				j->next = key;
-			else
-				*list = key;
-
-			key->next = hold;
-			if (hold)
-				hold->prev = key;
-
-			print_list(*list);
 		}
+		key->prev = j;
+		if (j)
+			j->next = key;
+		else
+			*list = key;
+
+		key->next = hold;
+		if (hold)
+			hold->prev = key;
+
+
 	}
 }
