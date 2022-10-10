@@ -17,7 +17,7 @@ void swap(int *x, int *y)
 }
 
 /**
- * partition - performs lomuto partition in the array
+ * lomuto_partition - performs lomuto partition in the array
  * @array: the array to be sorted
  * @size: size of the array
  * @min: the left-most element in the array (minimum index)
