@@ -26,7 +26,7 @@ void swap(int *x, int *y)
  * Return: the partition index (location to partition from)
  */
 
-int partition(int *array, size_t size, int min, int max)
+int lomuto_partition(int *array, size_t size, int min, int max)
 {
 	int i, j, pivot_val;
 
@@ -64,7 +64,7 @@ void quicksort_recursion(int *array, size_t size, int min, int max)
 
 	if (min < max)
 	{
-		pivot_idx = partition(array, size, min, max);
+		pivot_idx = lomuto_partition(array, size, min, max);
 		quicksort_recursion(array, size, min, pivot_idx - 1);
 		quicksort_recursion(array, size, pivot_idx + 1, max);
 	}
