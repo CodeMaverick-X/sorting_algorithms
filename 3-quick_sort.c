@@ -80,5 +80,7 @@ void quicksort_recursion(int *array, size_t size, int min, int max)
 
 void quick_sort(int *array, size_t size)
 {
+	if (array == NULL || size < 2)
+		return;
 	quicksort_recursion(array, size, 0, size - 1);
 }
