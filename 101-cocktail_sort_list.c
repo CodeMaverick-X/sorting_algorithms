@@ -1,6 +1,6 @@
 #include "sort.h"
-void f_bubble(listint_t **list, listint_t *j, listint_t *i, listint_t *crt);
-void b_bubble(listint_t **list, listint_t *j, listint_t *i, listint_t *crt_b);
+void f_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt);
+void b_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt_b);
 /**
  * cocktail_sort_list - sort a doubly linked list using
  * cocktrail sort
@@ -22,9 +22,9 @@ void cocktail_sort_list(listint_t **list)
 		crt = i->prev;
 		crt_b = i->next;
 
-		f_bubble(list, j, i, crt);
+		f_bubble(list, &j, &i, crt);
 
-		b_bubble(list, j, i, crt_b);
+		b_bubble(list, &j, &i, crt_b);
 		i = i->next;
 	}
 }
@@ -36,65 +36,65 @@ void cocktail_sort_list(listint_t **list)
  * @i: keeps track of itteration
  * @crt: controls when to adjust head pointer
  */
-void f_bubble(listint_t **list, listint_t *j, listint_t *i, listint_t *crt)
+void f_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt)
 {
 	listint_t *temp = NULL;
 
-	while (j->next != NULL)
+	while ((*j)->next != NULL)
 	{
-		if ((j->n) > (j->next)->n)
+		if (((*j)->n) > ((*j)->next)->n)
 		{
-			temp = j->next;
-			j->next = temp->next;
+			temp = (*j)->next;
+			(*j)->next = temp->next;
 			if (temp->next != NULL)
-				(temp->next)->prev = j;
-			temp->prev = j->prev;
-			if (j->prev != NULL)
-				(j->prev)->next = temp;
+				(temp->next)->prev = *j;
+			temp->prev = (*j)->prev;
+			if ((*j)->prev != NULL)
+				((*j)->prev)->next = temp;
 			else
 				*list = temp;
-			temp->next = j;
-			j->prev = temp;
-			if (i->prev != crt)
-				i = crt;
-			j = j->prev;
+			temp->next = *j;
+			(*j)->prev = temp;
+			if ((*i)->prev != crt)
+				*i = crt;
+			*j = (*j)->prev;
 			print_list(*list);
 		}
-		j = j->next;
+		*j = (*j)->next;
 	}
 }
 
 /**
- * b_bubble - performs bubble sort in the forword direction
+ * b_bubble - performs bubble sort in the backward direction
  * @list: pointer to the list
  * @j: one of the aux pointer
  * @i: keeps track of itteration
  * @crt_b: controls when to adjust head pointer
  */
-void b_bubble(listint_t **list, listint_t *j, listint_t *i, listint_t *crt_b)
+void b_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt_b)
 {
 	listint_t *temp = NULL;
 
-	while (j->prev != NULL)
+	while ((*j)->prev != NULL)
 	{
-		if ((j->n) < (j->prev)->n)
+		if (((*j)->n) < ((*j)->prev)->n)
 		{
-			temp = j->prev;
-			j->prev = temp->prev;
+			temp = (*j)->prev;
+			(*j)->prev = temp->prev;
 			if (temp->prev != NULL)
-				(temp->prev)->next = j;
+				(temp->prev)->next = *j;
 			else
-				*list = j;
-			temp->next = j->next;
-			if (j->next != NULL)
-				(j->next)->prev = temp;
-			temp->prev = j;
-			j->next = temp;
-			if (i->next != crt_b)
-				i = crt_b;
-			j = j->next;
+				*list = *j;
+			temp->next = (*j)->next;
+			if ((*j)->next != NULL)
+				((*j)->next)->prev = temp;
+			temp->prev = *j;
+			(*j)->next = temp;
+			if ((*i)->next != crt_b)
+				*i = crt_b;
+			*j = (*j)->next;
 			print_list(*list);
 		}
-		j = j->prev;
+		*j = (*j)->prev;
 	}
 }
