@@ -20,10 +20,10 @@ void cocktail_sort_list(listint_t **list)
 	{
 		j = *list;
 		crt = i->prev;
-		crt_b = i->next;
+		/* crt_b = i->next; */
 
 		f_bubble(list, &j, &i, crt);
-
+		crt_b = i->next;
 		b_bubble(list, &j, &i, crt_b);
 		i = i->next;
 	}
