@@ -1,6 +1,6 @@
 #include "sort.h"
 void f_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt);
-void b_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt_b);
+void b_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crtb);
 /**
  * cocktail_sort_list - sort a doubly linked list using
  * cocktrail sort
@@ -69,9 +69,9 @@ void f_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt)
  * @list: pointer to the list
  * @j: one of the aux pointer
  * @i: keeps track of itteration
- * @crt_b: controls when to adjust head pointer
+ * @crtb: controls when to adjust head pointer
  */
-void b_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt_b)
+void b_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crtb)
 {
 	listint_t *temp = NULL;
 
@@ -90,8 +90,8 @@ void b_bubble(listint_t **list, listint_t **j, listint_t **i, listint_t *crt_b)
 				((*j)->next)->prev = temp;
 			temp->prev = *j;
 			(*j)->next = temp;
-			if ((*i)->next != crt_b)
-				*i = crt_b;
+			if ((*i)->next != crtb)
+				*i = crtb;
 			*j = (*j)->next;
 			print_list(*list);
 		}
