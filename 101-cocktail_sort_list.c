@@ -7,7 +7,7 @@
 void cocktail_sort_list(listint_t **list)
 {
 	listint_t *i = NULL, *j = NULL, *correct = NULL, *temp = NULL;
-
+	listint_t *correct_b = NULL;
 
 	i = *list;
 
@@ -15,6 +15,8 @@ void cocktail_sort_list(listint_t **list)
 	{
 		j = *list;
 		correct = i->prev;
+		correct_b = i->next;
+
 		while (j->next != NULL)
 		{
 			if ((j->n) > (j->next)->n)
@@ -33,13 +35,33 @@ void cocktail_sort_list(listint_t **list)
 				if (i->prev != correct)
 					i = correct;
 				j = j->prev;
+				print_list(*list);
 			}
 			j = j->next;
 		}
 
-
-
-		print_list(*list);
+                while (j->prev != NULL)
+                {
+                        if ((j->n) < (j->prev)->n)
+                        {
+                                temp = j->prev;
+                                j->prev = temp->prev;
+                                if (temp->prev != NULL)
+                                        (temp->prev)->next = j;
+				else
+					*list = j;
+                                temp->next = j->next;
+                                if (j->next != NULL)
+                                        (j->next)->prev = temp;
+                                temp->prev = j;
+                                j->next = temp;
+                                if (i->next != correct_b)
+                                        i = correct_b;
+                                j = j->next;
+				print_list(*list);
+                        }
+                        j = j->prev;
+                }
 		i = i->next;
 	}
 }
